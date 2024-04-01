@@ -9,9 +9,8 @@ const Slider = () => {
   const [index, setIndex] = useState(0);
 
   const byDateDesc = data?.focus ? [...data.focus].sort((evtA, evtB) =>
-  new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
-) : [];
-
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+  ) : [];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,7 +23,7 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <div key={event.title} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
+        <div key={event.id} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
           <img src={event.cover} alt="forum" />
           <div className="SlideCard__descriptionContainer">
             <div className="SlideCard__description">
@@ -37,12 +36,12 @@ const Slider = () => {
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((event) => (
+          {byDateDesc.map((event, idx) => (
             <input
               key={event.id}
               type="radio"
               name="radio-button"
-              checked={index === byDateDesc.indexOf(event)}
+              defaultChecked={index === idx}
             />
           ))}
         </div>

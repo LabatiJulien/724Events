@@ -12,6 +12,10 @@ const Slider = () => {
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   ) : [];
 
+  const handleRadioChange = (idx) => {
+    setIndex(idx);
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIndex((prevIndex) => (prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0));
@@ -41,7 +45,8 @@ const Slider = () => {
               key={event.id}
               type="radio"
               name="radio-button"
-              defaultChecked={index === idx}
+              checked={index === idx}
+              onChange={() => handleRadioChange(idx)}
             />
           ))}
         </div>

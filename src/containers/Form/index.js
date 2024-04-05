@@ -35,7 +35,7 @@ const Form = ({ onSuccess, onError }) => {
           <Select
             selection={["Personnel", "Entreprise"]}
             onChange={() => null}
-            label="Personnel / Entreprise"
+            label="Personel / Entreprise"
             type="large"
             titleEmpty
           />

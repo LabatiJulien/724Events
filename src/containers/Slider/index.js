@@ -24,10 +24,13 @@ const Slider = () => {
     return () => clearTimeout(timer);
   }, [index, byDateDesc.length]);
 
+// Fonction pour générer une clé unique
+const generateUniqueKey = () => `slide-${new Date().getTime()}-${Math.random()}`;
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <div key={event.id} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
+        <div key={event.id || generateUniqueKey()} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
           <img src={event.cover} alt="forum" />
           <div className="SlideCard__descriptionContainer">
             <div className="SlideCard__description">
@@ -42,7 +45,7 @@ const Slider = () => {
         <div className="SlideCard__pagination">
           {byDateDesc.map((event, idx) => (
             <input
-              key={event.id}
+              key={event.id || generateUniqueKey()}
               type="radio"
               name="radio-button"
               checked={index === idx}
